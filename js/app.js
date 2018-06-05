@@ -1,7 +1,15 @@
 /*
  * Create a list that holds all of your cards
  */
-
+var cardList = [ 'fa-anchor', 'fa-anchor',
+                  'fa-bicycle', 'fa-bicycle',
+                  'fa-bolt', 'fa-bolt',
+                  'fa-bomb', 'fa-bomb',
+                  'fa-card', 'fa-card',
+                  'fa-diamond', 'fa-diamond',
+                  'fa-leaf', 'fa-leaf',
+                  'fa-paper-plane-o', 'fa-paper-plane-o'
+                ];
 
 /*
  * Display the cards on the page
@@ -25,6 +33,23 @@ function shuffle(array) {
     return array;
 }
 
+// card HTML
+function createCard(card) {
+  return `<li class="card"><i class="fa ${card}"></i></li>`;
+}
+
+// start game
+function startGame() {
+  var deck = document.querySelector('.deck');
+  var cardHTML = shuffle(cardList).map(function(card) {
+    return createCard(card);
+  });
+
+  deck.innerHTML = cardHTML.join('');
+}
+
+startGame();
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -43,7 +68,7 @@ cards.forEach(function(card) {
   card.addEventListener('click', function(c) {
     openCards.push(card);
     card.classList.add('open', 'show');
-    
+
     if (openCards.length == 2) {
       setTimeout(function() {
         openCards.forEach(function(card) {
