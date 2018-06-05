@@ -5,7 +5,7 @@ var cardList = [ 'fa-anchor', 'fa-anchor',
                   'fa-bicycle', 'fa-bicycle',
                   'fa-bolt', 'fa-bolt',
                   'fa-bomb', 'fa-bomb',
-                  'fa-card', 'fa-card',
+                  'fa-car', 'fa-car',
                   'fa-diamond', 'fa-diamond',
                   'fa-leaf', 'fa-leaf',
                   'fa-paper-plane-o', 'fa-paper-plane-o'
