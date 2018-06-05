@@ -64,6 +64,11 @@ startGame();
 var cards = document.querySelectorAll('.card');
 var openCards = [];
 
+function clearCards() {
+  openCards = [];
+}
+
+
 cards.forEach(function(card) {
   card.addEventListener('click', function(c) {
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) { // if a card is not already showing or matched, add to openCards and add classes to show it
@@ -79,12 +84,14 @@ cards.forEach(function(card) {
           openCards[1].classList.add('match');
           openCards[1].classList.remove('open');
           openCards[1].classList.remove('show');
+
+          clearCards();
         } else {
           setTimeout(function() {
             openCards.forEach(function(card) {
               card.classList.remove('open', 'show');
             });
-            openCards = [];
+            clearCards();
           }, 1000);
         }
       }
