@@ -46,7 +46,13 @@ function startGame() {
   });
 
   deck.innerHTML = cardHTML.join('');
+
+  moves = 0; // reset moves count to 0 upon start
+  moveCounter.innerText = moves;
 }
+
+let moves = 0;
+let moveCounter = document.querySelector('.moves');
 
 startGame();
 
@@ -67,7 +73,6 @@ var openCards = [];
 function clearCards() {
   openCards = [];
 }
-
 
 cards.forEach(function(card) {
   card.addEventListener('click', function(c) {
@@ -91,9 +96,13 @@ cards.forEach(function(card) {
             openCards.forEach(function(card) {
               card.classList.remove('open', 'show');
             });
+
             clearCards();
           }, 1000);
         }
+
+        moves += 1;
+        moveCounter.innerText = moves;
       }
     }
   });
