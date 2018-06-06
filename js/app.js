@@ -142,7 +142,7 @@ cards.forEach(function(card) {
 
 
 // Get the modal and elements within
-const modal = document.getElementById('myModal');
+const modal = document.getElementById('winModal');
 const modalText = document.getElementById('modalText');
 const span = document.getElementsByClassName("close")[0];
 
