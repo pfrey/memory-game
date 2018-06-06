@@ -78,7 +78,7 @@ newGame.addEventListener('click', function() {
 var cards = document.querySelectorAll('.card');
 var openCards = [];
 
-function clearCards() {
+function clearCards() { // user to reset open cards counter
   openCards = [];
 }
 
@@ -87,13 +87,23 @@ function moveCount() {
   moveCounter.innerText = moves;
 }
 
-function matchMade() {
+function correctMatch() {
   openCards[0].classList.add('match');
   openCards[0].classList.remove('open');
   openCards[0].classList.remove('show');
   openCards[1].classList.add('match');
   openCards[1].classList.remove('open');
   openCards[1].classList.remove('show');
+}
+
+function incorrectMatch() {
+  setTimeout(function() {
+    openCards.forEach(function(card) {
+      card.classList.remove('open', 'show');
+    });
+
+    clearCards();
+  }, 800);
 }
 
 cards.forEach(function(card) {
@@ -105,17 +115,11 @@ cards.forEach(function(card) {
       if (openCards.length == 2) {
 
         if (openCards[0].isEqualNode(openCards[1])) {
-          matchMade()
+          correctMatch();
 
           clearCards();
         } else {
-          setTimeout(function() {
-            openCards.forEach(function(card) {
-              card.classList.remove('open', 'show');
-            });
-
-            clearCards();
-          }, 800);
+          incorrectMatch();
         }
 
         moveCount();
