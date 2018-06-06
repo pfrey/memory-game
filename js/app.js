@@ -1,6 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
+// List of all available cards
 var cardList = [ 'fa-anchor', 'fa-anchor',
                   'fa-bicycle', 'fa-bicycle',
                   'fa-bolt', 'fa-bolt',
@@ -10,13 +8,6 @@ var cardList = [ 'fa-anchor', 'fa-anchor',
                   'fa-leaf', 'fa-leaf',
                   'fa-paper-plane-o', 'fa-paper-plane-o'
                 ];
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -50,10 +41,12 @@ function startGame() {
   moves = 0; // reset moves count to 0 upon start
   moveCounter.innerText = moves;
   matchCount = 0; // reset match count to 0 upon start
+  resetStars();
 
-  // setInterval to create the timer?
+
 }
 
+// set move and match variables
 let moves = 0;
 let moveCounter = document.querySelector('.moves');
 let matchCount = 0;
@@ -66,27 +59,41 @@ newGame.addEventListener('click', function() {
   startGame();
 });
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+// set card variables
 var cards = document.querySelectorAll('.card');
 var openCards = [];
 
-function clearCards() { // user to reset open cards counter
+function clearCards() { // use to reset open cards count
   openCards = [];
 }
 
 function moveCount() {
   moves += 1;
   moveCounter.innerText = moves;
+}
+
+function resetStars() {
+  var star = document.getElementsByClassName('fa-star');
+  star[2].classList.remove('hide');
+  star[1].classList.remove('hide');
+  starCount = "three"; // reset starCount to default of 3
+}
+
+function removeStars() {
+  // TODO: determine and update number of moves before docking stars
+  if (moves === 1) {
+    var star = document.getElementsByClassName('fa-star');
+    star[2].classList.add('hide');
+    starCount = "two";
+    console.log(starCount);
+  }
+  if (moves === 3) {
+    var star = document.getElementsByClassName('fa-star');
+    star[1].classList.add('hide');
+    starCount = "one";
+    console.log(starCount);
+    console.log('remove another star');
+  }
 }
 
 function correctMatch() {
@@ -96,13 +103,6 @@ function correctMatch() {
   openCards[1].classList.add('match');
   openCards[1].classList.remove('open');
   openCards[1].classList.remove('show');
-}
-
-function winScreen() {
-  setTimeout (function() {
-    modalText.innerText = "You won in " + moves + " moves.";
-    modal.style.display = "block";
-  }, 600);
 }
 
 function incorrectMatch() {
@@ -115,9 +115,18 @@ function incorrectMatch() {
   }, 800);
 }
 
+function winScreen() {
+  setTimeout (function() {
+    modalText.innerText = "You played a " + starCount + " star game by winning in " + moves + " moves.";
+    modal.style.display = "block";
+  }, 600);
+}
+
 cards.forEach(function(card) {
   card.addEventListener('click', function(c) {
-    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) { // if a card is not already showing or matched, add to openCards and add classes to show it
+    // if a card is not already showing or matched, 
+    // add to openCards and add classes to show it
+    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) { 
       openCards.push(card);
       card.classList.add('open', 'show');
 
@@ -132,14 +141,17 @@ cards.forEach(function(card) {
         }
 
         moveCount();
-      }    
+        // TODO: determine and update number of moves before docking stars
+        if (moves === 1 || 3) {
+          removeStars();
+        }
+      }
       if (matchCount === 8) {
         winScreen();
       }
     }
   });
 });
-
 
 // Get the modal and elements within
 const modal = document.getElementById('winModal');
