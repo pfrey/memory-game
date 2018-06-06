@@ -49,6 +49,8 @@ function startGame() {
 
   moves = 0; // reset moves count to 0 upon start
   moveCounter.innerText = moves;
+
+  // setInterval to create the timer?
 }
 
 let moves = 0;
@@ -69,6 +71,13 @@ startGame();
  */
 var cards = document.querySelectorAll('.card');
 var openCards = [];
+const newGame = document.querySelector('.restart');
+
+
+  newGame.addEventListener('click', function() {
+    console.log('restart was clicked');
+    startGame();
+  });
 
 function clearCards() {
   openCards = [];
