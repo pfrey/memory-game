@@ -87,6 +87,15 @@ function moveCount() {
   moveCounter.innerText = moves;
 }
 
+function matchMade() {
+  openCards[0].classList.add('match');
+  openCards[0].classList.remove('open');
+  openCards[0].classList.remove('show');
+  openCards[1].classList.add('match');
+  openCards[1].classList.remove('open');
+  openCards[1].classList.remove('show');
+}
+
 cards.forEach(function(card) {
   card.addEventListener('click', function(c) {
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) { // if a card is not already showing or matched, add to openCards and add classes to show it
@@ -96,12 +105,7 @@ cards.forEach(function(card) {
       if (openCards.length == 2) {
 
         if (openCards[0].isEqualNode(openCards[1])) {
-          openCards[0].classList.add('match');
-          openCards[0].classList.remove('open');
-          openCards[0].classList.remove('show');
-          openCards[1].classList.add('match');
-          openCards[1].classList.remove('open');
-          openCards[1].classList.remove('show');
+          matchMade()
 
           clearCards();
         } else {
