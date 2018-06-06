@@ -49,12 +49,14 @@ function startGame() {
 
   moves = 0; // reset moves count to 0 upon start
   moveCounter.innerText = moves;
+  matchCount = 0; // reset match count to 0 upon start
 
   // setInterval to create the timer?
 }
 
 let moves = 0;
 let moveCounter = document.querySelector('.moves');
+let matchCount = 0;
 
 startGame();
 
@@ -96,6 +98,13 @@ function correctMatch() {
   openCards[1].classList.remove('show');
 }
 
+function winScreen() {
+  setTimeout (function() {
+    modalText.innerText = "You won in " + moves + " moves.";
+    modal.style.display = "block";
+  }, 600);
+}
+
 function incorrectMatch() {
   setTimeout(function() {
     openCards.forEach(function(card) {
@@ -116,14 +125,34 @@ cards.forEach(function(card) {
 
         if (openCards[0].isEqualNode(openCards[1])) {
           correctMatch();
-
+          matchCount += 1;
           clearCards();
         } else {
           incorrectMatch();
         }
 
         moveCount();
+      }    
+      if (matchCount === 8) {
+        winScreen();
       }
     }
   });
 });
+
+
+// Get the modal and elements within
+const modal = document.getElementById('myModal');
+const modalText = document.getElementById('modalText');
+const span = document.getElementsByClassName("close")[0];
+
+// A user clicking either the X within the modal, 
+// or anywhere outside the modal will close it
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
