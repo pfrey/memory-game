@@ -73,14 +73,18 @@ var cards = document.querySelectorAll('.card');
 var openCards = [];
 const newGame = document.querySelector('.restart');
 
-
-  newGame.addEventListener('click', function() {
-    console.log('restart was clicked');
-    startGame();
-  });
+// if restart button is clicked
+newGame.addEventListener('click', function() {
+  startGame();
+});
 
 function clearCards() {
   openCards = [];
+}
+
+function moveCount() {
+  moves += 1;
+  moveCounter.innerText = moves;
 }
 
 cards.forEach(function(card) {
@@ -110,8 +114,7 @@ cards.forEach(function(card) {
           }, 1000);
         }
 
-        moves += 1;
-        moveCounter.innerText = moves;
+        moveCount();
       }
     }
   });
