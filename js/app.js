@@ -58,6 +58,12 @@ let moveCounter = document.querySelector('.moves');
 
 startGame();
 
+// restart button
+const newGame = document.querySelector('.restart');
+newGame.addEventListener('click', function() {
+  startGame();
+});
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -71,12 +77,6 @@ startGame();
  */
 var cards = document.querySelectorAll('.card');
 var openCards = [];
-const newGame = document.querySelector('.restart');
-
-// if restart button is clicked
-newGame.addEventListener('click', function() {
-  startGame();
-});
 
 function clearCards() {
   openCards = [];
@@ -111,7 +111,7 @@ cards.forEach(function(card) {
             });
 
             clearCards();
-          }, 1000);
+          }, 800);
         }
 
         moveCount();
