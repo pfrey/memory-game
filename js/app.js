@@ -75,7 +75,7 @@ function resetStars() {
   starCount = "three"; // reset starCount to default of three
 }
 
-function removeStars() { // remove stars as moves progress
+function removeStars() { // remove stars as number of moves increase
   // TODO: determine and update number of moves before docking stars
   if (moves === 1) {
     var star = document.getElementsByClassName('fa-star');
