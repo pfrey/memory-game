@@ -121,11 +121,14 @@ function removeStars() { // remove stars as number of moves increase
 
 function compareCards() {
   if (openCards.length === 2) {
-    //TODO: Disable click???
+    document.body.style.pointerEvents = "none"; // disable mouse clicks until check is complete
+
     if (openCards[0].isEqualNode(openCards[1])) {
       matchCount += 1;
+      noclick = false;
       correctMatch();
     } else {
+      noclick = false;
       incorrectMatch();
     }
   }
@@ -138,6 +141,8 @@ function correctMatch() { // if cards match, add and remove applicable classes
   openCards[1].classList.add('match');
   openCards[1].classList.remove('open');
   openCards[1].classList.remove('show');
+  
+  document.body.style.pointerEvents = "auto"; // reenable mouse clicks to continue play
 
   if (matchCount === 8) {
     winScreen();
@@ -153,6 +158,8 @@ function incorrectMatch() { // if cards don't match, show them, pause, and hide 
     openCards.forEach(function(card) {
       card.classList.remove('open', 'show');
     });
+
+    document.body.style.pointerEvents = "auto"; // reenable mouse clicks to continue play
 
     clearCards();
   }, 800);
