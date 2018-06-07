@@ -76,19 +76,15 @@ function resetStars() {
 }
 
 function removeStars() { // remove stars as number of moves increase
-  // TODO: determine and update number of moves before docking stars
-  if (moves === 1) {
+  if (moves === 10) {
     var star = document.getElementsByClassName('fa-star');
     star[2].classList.add('hide');
     starCount = "two";
-    console.log(starCount);
   }
-  if (moves === 3) {
+  if (moves === 20) {
     var star = document.getElementsByClassName('fa-star');
     star[1].classList.add('hide');
     starCount = "one";
-    console.log(starCount);
-    console.log('remove another star');
   }
 }
 
@@ -138,7 +134,7 @@ cards.forEach(function(card) {
 
         moveCount();
         // TODO: determine and update number of moves before docking stars
-        if (moves === 1 || 3) {
+        if (moves === 10 || 20) {
           removeStars();
         }
       }
