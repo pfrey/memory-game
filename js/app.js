@@ -74,6 +74,8 @@ function startTimer() {
 
 function stopTimer() {
   timerText.innerText = "00:00";
+  seconds = 0;
+  minutes = 0;
   clearInterval(timer);
 }
 
