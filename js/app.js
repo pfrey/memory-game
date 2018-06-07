@@ -215,31 +215,6 @@ deck.addEventListener('click', event=> {
   }
 });
 
-/*cards.forEach(function(card) {
-  console.log('foreach initiated');
-  card.addEventListener('click', function() {
-    console.log('addlisteners initiated');
-    // if a card is not already showing or matched, 
-    // add to openCards and add classes to show it
-    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) { 
-      function showCard() {
-        card.classList.add('open', 'show');
-        openCardList();
-        console.log('showCard done');
-      }
-      function openCardList() {
-        if (openCards < 2) {
-          openCards.push(card);
-        }
-        if (openCards.length == 2) {
-          compareCards();
-        }
-        console.log('openCardList done');
-      }
-    }
-  });
-});*/
-
 // Get the modal and elements within
 const modal = document.getElementById('winModal');
 const finalStats = document.getElementById('finalStats');
