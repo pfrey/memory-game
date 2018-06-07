@@ -13,18 +13,16 @@ var deck = document.querySelector('.deck');
 var moves = 0;
 var moveCounter = document.querySelector('.moves');
 var matchCount = 0;
-var timerText = document.querySelector('.timer');
-var time = 0;
 var seconds = 0;
 var minutes = 0;
 var timer;
+var timerText = document.querySelector('.timer');
 var timerStarted = false;
+var card;
 var cards = document.querySelectorAll('.card');
 var openCards = [];
 var star = document.getElementsByClassName('fa-star');
 var starCount;
-var firstClick = true;
-var card;
 
 const shuffledCards = shuffle(cardList);
 const newGame = document.querySelector('.restart');
@@ -49,7 +47,7 @@ function createCard(card) { // html to build each card dynamically
 }
 
 function startGame() { // start game with new deck and reset counters
-  timerText.innerText = "00:00";
+  timerText.innerText = "00:00"; // set default text of timer to all zeros
 
   var cardContent = shuffle(cardList).map(function(card) {
     return createCard(card);
@@ -66,10 +64,11 @@ function startTimer() {
       seconds = 0;
       minutes++;
     }
-    timerText.innerText = 
-        (minutes < 10 ? '0' + minutes.toString() : minutes) +
-        ':' +
-        (seconds < 10 ? '0' + seconds.toString() : seconds);
+
+    min = (minutes < 10 ? '0' + minutes.toString() : minutes);
+    sec = (seconds < 10 ? '0' + seconds.toString() : seconds);
+
+    timerText.innerText = min + ':' + sec;
   }, 1000);
 }
 
@@ -90,9 +89,7 @@ function playAgain() {
   moves = 0; // reset moves count to 0 upon start
   moveCounter.innerText = moves;
   matchCount = 0; // reset match count to 0 upon start
-  time = 0;
   timerStarted = false;
-  timerText.innerText = time;
   star[2].classList.remove('hide');
   star[1].classList.remove('hide');
   starCount = "three"; // reset starCount to default of three
@@ -125,10 +122,8 @@ function compareCards() {
 
     if (openCards[0].isEqualNode(openCards[1])) {
       matchCount += 1;
-      noclick = false;
       correctMatch();
     } else {
-      noclick = false;
       incorrectMatch();
     }
   }
