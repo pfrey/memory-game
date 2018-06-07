@@ -133,7 +133,6 @@ cards.forEach(function(card) {
         }
 
         moveCount();
-        // TODO: determine and update number of moves before docking stars
         if (moves === 10 || 20) {
           removeStars();
         }
