@@ -24,26 +24,22 @@ function shuffle(array) {
     return array;
 }
 
-// card HTML
-function createCard(card) {
+function createCard(card) { // html to build each card dynamically
   return `<li class="card"><i class="fa ${card}"></i></li>`;
 }
 
-// start game
-function startGame() {
+function startGame() { // start game with new deck and reset counters
   var deck = document.querySelector('.deck');
-  var cardHTML = shuffle(cardList).map(function(card) {
+  var cardContent = shuffle(cardList).map(function(card) {
     return createCard(card);
   });
 
-  deck.innerHTML = cardHTML.join('');
+  deck.innerHTML = cardContent.join(''); // join each card to the deck
 
   moves = 0; // reset moves count to 0 upon start
   moveCounter.innerText = moves;
   matchCount = 0; // reset match count to 0 upon start
   resetStars();
-
-
 }
 
 // set move and match variables
@@ -51,7 +47,7 @@ let moves = 0;
 let moveCounter = document.querySelector('.moves');
 let matchCount = 0;
 
-startGame();
+startGame(); // start game on page load
 
 // restart button
 const newGame = document.querySelector('.restart');
@@ -67,7 +63,7 @@ function clearCards() { // use to reset open cards count
   openCards = [];
 }
 
-function moveCount() {
+function moveCount() { // increase move count by 1 and update text for output
   moves += 1;
   moveCounter.innerText = moves;
 }
@@ -76,10 +72,10 @@ function resetStars() {
   var star = document.getElementsByClassName('fa-star');
   star[2].classList.remove('hide');
   star[1].classList.remove('hide');
-  starCount = "three"; // reset starCount to default of 3
+  starCount = "three"; // reset starCount to default of three
 }
 
-function removeStars() {
+function removeStars() { // remove stars as moves progress
   // TODO: determine and update number of moves before docking stars
   if (moves === 1) {
     var star = document.getElementsByClassName('fa-star');
@@ -96,7 +92,7 @@ function removeStars() {
   }
 }
 
-function correctMatch() {
+function correctMatch() { // if cards match, add and remove applicable classes
   openCards[0].classList.add('match');
   openCards[0].classList.remove('open');
   openCards[0].classList.remove('show');
@@ -105,7 +101,7 @@ function correctMatch() {
   openCards[1].classList.remove('show');
 }
 
-function incorrectMatch() {
+function incorrectMatch() { // if cards don't match, show them, pause, and hide them
   setTimeout(function() {
     openCards.forEach(function(card) {
       card.classList.remove('open', 'show');
@@ -115,7 +111,7 @@ function incorrectMatch() {
   }, 800);
 }
 
-function winScreen() {
+function winScreen() { // display modal popup with game stats
   setTimeout (function() {
     modalText.innerText = "You played a " + starCount + " star game by winning in " + moves + " moves.";
     modal.style.display = "block";
