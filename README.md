@@ -3,18 +3,22 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
+* [Code Dependencies](#dependencies)
 * [Contributing](#contributing)
+
+The is a game of concentration... No repeats... Or hesitations... Are you ready? Let's Go!
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This is your classic game of Memory! Flip two cards in a turn, trying to find matching pairs. Your timer will begin after your first click. Once all eight pairs have been matched, the game ends. The fewer moves you make, the more stars you keep! Try to beat the clock! Or narrow down your moves and earn a three star game!
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Dependencies
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+[Bootstrap Font Awesome CSS](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
+[Google Font Coda](https://fonts.googleapis.com/css?family=Coda)
+
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+This is a student project, not meant for public use or contributions.
+Please see [CONTRIBUTING.md](CONTRIBUTING.md).
