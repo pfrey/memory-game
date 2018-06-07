@@ -40,14 +40,28 @@ function startGame() { // start game with new deck and reset counters
   moveCounter.innerText = moves;
   matchCount = 0; // reset match count to 0 upon start
   resetStars();
+  startTimer();
 }
 
-// set move and match variables
-let moves = 0;
-let moveCounter = document.querySelector('.moves');
-let matchCount = 0;
+var moves = 0;
+var moveCounter = document.querySelector('.moves');
+var matchCount = 0;
+var timerText = document.querySelector('.timer');
+var time = 0;
+var timer;
 
-startGame(); // start game on page load
+function startTimer() {
+  timer = setInterval(function() {
+    time++;
+    timerText.innerText = time;
+  }, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timer);
+}
+
+window.onload = startGame(); // start game on page load
 
 // restart button
 const newGame = document.querySelector('.restart');
@@ -108,8 +122,9 @@ function incorrectMatch() { // if cards don't match, show them, pause, and hide 
 }
 
 function winScreen() { // display modal popup with game stats
+  stopTimer();
   setTimeout (function() {
-    modalText.innerText = "You played a " + starCount + " star game by winning in " + moves + " moves.";
+    modalText.innerText = "You played a " + starCount + " star game by winning in " + moves + " moves in " + time + " seconds.";
     modal.style.display = "block";
   }, 600);
 }
