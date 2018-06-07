@@ -140,10 +140,10 @@ h1 {
     text-align: center;
 }
 
-#modalText2 {
+#playAgainButton {
     cursor: pointer;
 }
-#modalText2:hover {
+#playAgainButton:hover {
     text-decoration: underline;
 }
 

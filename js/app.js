@@ -73,6 +73,7 @@ function startTimer() {
 }
 
 function stopTimer() {
+  timerText.innerText = "00:00";
   clearInterval(timer);
 }
 
@@ -165,7 +166,7 @@ function incorrectMatch() { // if cards don't match, show them, pause, and hide 
 function winScreen() { // display modal popup with game stats
   stopTimer();
   setTimeout (function() {
-    finalStats.innerText = "You played a " + starCount + " star game by finding all the matches in " + moves + " moves with a time of " + minutes + ":" + seconds + ".";
+    finalStats.innerText = "You played a " + starCount + " star game by finding all the matches in " + moves + " moves with a time of " + min + ":" + sec + ".";
     playAgainButton.innerText = "Play Again?";
     modal.style.display = "block";
   }, 600);
