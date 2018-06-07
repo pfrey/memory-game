@@ -140,13 +140,6 @@ h1 {
     text-align: center;
 }
 
-#modalText2 {
-    cursor: pointer;
-}
-#modalText2:hover {
-    text-decoration: underline;
-}
-
 .close {
     color: #e0e0e0;
     float: right;
