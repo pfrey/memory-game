@@ -53,11 +53,9 @@ function startGame() { // start game with new deck and reset counters
 
   var cardContent = shuffle(cardList).map(function(card) {
     return createCard(card);
-    console.log('createCard done');
   });
 
   deck.innerHTML = cardContent.join(''); // join each card to the deck
-  console.log('deck build done');
 }
 
 function startTimer() {
@@ -73,21 +71,17 @@ function startTimer() {
         ':' +
         (seconds < 10 ? '0' + seconds.toString() : seconds);
   }, 1000);
-  console.log('startTimer done');
 }
 
 function stopTimer() {
   clearInterval(timer);
-  console.log('stopTimer done');
 }
 
 window.onload = startGame(); // start game on page load
-console.log('startGame initiated');
 
 // restart button
 newGame.addEventListener('click', function() {
   playAgain();
-  console.log('restart initited');
 });
 
 function playAgain() {
@@ -103,43 +97,35 @@ function playAgain() {
   star[1].classList.remove('hide');
   starCount = "three"; // reset starCount to default of three
   startGame();
-  console.log('playAgain requested');
 }
 
 function clearCards() { // use to reset open cards count
   openCards = [];
-  console.log('clearCards done');
 }
 
 function moveCount() { // increase move count by 1 and update text for output
   moves += 1;
   moveCounter.innerText = moves;
-  console.log('moveCount done');
 }
 
 function removeStars() { // remove stars as number of moves increase
   if (moves === 10) {
     star[2].classList.add('hide');
     starCount = "two";
-    console.log('star remove done');
   }
   if (moves === 20) {
     star[1].classList.add('hide');
     starCount = "one";
-    console.log('2nd star remove done');
   }
 }
 
 function compareCards() {
-  console.log('compareCards initiated');
   if (openCards.length === 2) {
     //TODO: Disable click???
     if (openCards[0].isEqualNode(openCards[1])) {
       matchCount += 1;
-      console.log('correctMatch initiated');
       correctMatch();
     } else {
-      console.log('incorrectMatch initiated');
       incorrectMatch();
     }
   }
@@ -160,7 +146,6 @@ function correctMatch() { // if cards match, add and remove applicable classes
   clearCards();
   moveCount();
   removeStars();
-  console.log('correctMatch done');
 }
 
 function incorrectMatch() { // if cards don't match, show them, pause, and hide them
@@ -173,7 +158,6 @@ function incorrectMatch() { // if cards don't match, show them, pause, and hide 
   }, 800);
   moveCount();
   removeStars();
-  console.log('incorrectMatch done');
 }
 
 function winScreen() { // display modal popup with game stats
@@ -188,7 +172,6 @@ function winScreen() { // display modal popup with game stats
 function showCard() {
   card.classList.add('open', 'show');
   openCardList();
-  console.log('showCard done');
 }
 
 function openCardList() {
@@ -197,16 +180,13 @@ function openCardList() {
   if (openCards.length === 2) {
     compareCards();
   }
-  console.log('openCardList done');
 }
   
 deck.addEventListener('click', event=> {
   card = event.target;
   if (card.classList.contains('card')) {
-    console.log("i'm a card");
     if (timerStarted === false) {
       timerStarted = true;
-      console.log('startTimer initiated');
       startTimer();
     }
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) { 
