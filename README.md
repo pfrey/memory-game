@@ -16,6 +16,7 @@ This is your classic game of Memory! Flip two cards in a turn, trying to find ma
 
 [Bootstrap Font Awesome CSS](https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css)
 [Google Font Coda](https://fonts.googleapis.com/css?family=Coda)
+[animate.css](https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css)
 
 
 ## Contributing

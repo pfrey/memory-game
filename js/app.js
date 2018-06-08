@@ -132,12 +132,10 @@ function compareCards() {
 }
 
 function correctMatch() { // if cards match, add and remove applicable classes
-  openCards[0].classList.add('match');
-  openCards[0].classList.remove('open');
-  openCards[0].classList.remove('show');
-  openCards[1].classList.add('match');
-  openCards[1].classList.remove('open');
-  openCards[1].classList.remove('show');
+  openCards[0].classList.add('match', 'animated', 'rubberBand');
+  openCards[0].classList.remove('open', 'show');
+  openCards[1].classList.add('match', 'animated', 'rubberBand');
+  openCards[1].classList.remove('open', 'show');
   
   document.body.style.pointerEvents = "auto"; // reenable mouse clicks to continue play
 
@@ -151,15 +149,19 @@ function correctMatch() { // if cards match, add and remove applicable classes
 }
 
 function incorrectMatch() { // if cards don't match, show them, pause, and hide them
+  openCards.forEach(function(card) {
+    card.classList.add('animated', 'jello');
+  });
+
   setTimeout(function() {
     openCards.forEach(function(card) {
-      card.classList.remove('open', 'show');
+      card.classList.remove('open', 'show', 'animated', 'jello');
     });
 
     document.body.style.pointerEvents = "auto"; // reenable mouse clicks to continue play
 
     clearCards();
-  }, 800);
+  }, 900);
   moveCount();
   removeStars();
 }
@@ -167,7 +169,7 @@ function incorrectMatch() { // if cards don't match, show them, pause, and hide 
 function winScreen() { // display modal popup with game stats
   stopTimer();
   setTimeout (function() {
-    finalStats.innerText = "You played a " + starCount + " star game by finding all the matches in " + moves + " moves with a time of " + min + ":" + sec + ".";
+    finalStats.innerHTML = "You played a " + starCount + " star game by finding all the matches in " + moves + " moves with a time of " + min + ":" + sec + ".";
     playAgainButton.innerText = "Play Again?";
     modal.style.display = "block";
   }, 600);
