@@ -1,5 +1,5 @@
 // List of all available cards
-var cardList = [ 'fa-anchor', 'fa-anchor',
+let cardList = [ 'fa-anchor', 'fa-anchor',
                   'fa-bicycle', 'fa-bicycle',
                   'fa-bolt', 'fa-bolt',
                   'fa-bomb', 'fa-bomb',
@@ -9,20 +9,20 @@ var cardList = [ 'fa-anchor', 'fa-anchor',
                   'fa-paper-plane-o', 'fa-paper-plane-o'
                 ];
 
-var deck = document.querySelector('.deck');
-var moves = 0;
-var moveCounter = document.querySelector('.moves');
-var matchCount = 0;
-var seconds = 0;
-var minutes = 0;
-var timer;
-var timerText = document.querySelector('.timer');
-var timerStarted = false;
-var card;
-var cards = document.querySelectorAll('.card');
-var openCards = [];
-var star = document.getElementsByClassName('fa-star');
-var starCount;
+let deck = document.querySelector('.deck');
+let moves = 0;
+let moveCounter = document.querySelector('.moves');
+let matchCount = 0;
+let seconds = 0;
+let minutes = 0;
+let timer;
+let timerText = document.querySelector('.timer');
+let timerStarted = false;
+let card;
+let cards = document.querySelectorAll('.card');
+let openCards = [];
+let star = document.getElementsByClassName('fa-star');
+let starCount;
 
 const shuffledCards = shuffle(cardList);
 const newGame = document.querySelector('.restart');
@@ -49,7 +49,7 @@ function createCard(card) { // html to build each card dynamically
 function startGame() { // start game with new deck and reset counters
   timerText.innerText = "00:00"; // set default text of timer to all zeros
 
-  var cardContent = shuffle(cardList).map(function(card) {
+  let cardContent = shuffle(cardList).map(function(card) {
     return createCard(card);
   });
 
