@@ -167,8 +167,18 @@ function incorrectMatch() { // if cards don't match, show them, pause, and hide 
 }
 
 function winScreen() { // display modal popup with game stats
+  let star = "<i class='fa fa-star'></i>";
   stopTimer();
   setTimeout (function() {
+    if (starCount === 'one') {
+      starRating.innerHTML = "Star Rating: " + star;
+    }
+    if (starCount === 'two') {
+      starRating.innerHTML = "Star Rating: " + star + star;
+    }
+    if (starCount === 'three') {
+      starRating.innerHTML = "Star Rating: " + star + star + star;
+    }
     finalStats.innerHTML = "You played a " + starCount + " star game by finding all the matches in " + moves + " moves with a time of " + min + ":" + sec + ".";
     playAgainButton.innerText = "Play Again?";
     modal.style.display = "block";
